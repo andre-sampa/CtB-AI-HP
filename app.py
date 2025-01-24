@@ -43,15 +43,18 @@ def generate_prompt(left_hp, right_hp):
     return f"A wide fantasy landscape showing two castles. On the left, a castle with {left_desc}, adorned exclusively with large and prominent blue flags flying proudly. On the right, a castle with {right_desc}, adorned exclusively with large and prominent red flags flying proudly. The scene is highly detailed, with a clear contrast between the two castles. The left castle is visibly more damaged than the right castle, with significantly more red fire, smoke, and destruction. The blue flags on the left castle and the red flags on the right castle are clearly visible and distinct, ensuring no overlap in team colors. The fire is always red, regardless of the castle's team."
 
 # Function to generate images based on the HP values
-def generate_image(left_hp, right_hp, height, width, num_inference_steps, guidance_scale, seed, randomize_seed):
+def generate_image(left_hp, right_hp):
+    # Hardcoded parameters
+    height = 512  # Fixed height
+    width = 1024  # Fixed width
+    num_inference_steps = 20  # Fixed inference steps
+    guidance_scale = 2.0  # Fixed guidance scale
+    seed = random.randint(0, 1000000)  # Random seed
+
     # Generate the prompt
     prompt = generate_prompt(left_hp, right_hp)
 
     try:
-        # Randomize the seed if the checkbox is checked
-        if randomize_seed:
-            seed = random.randint(0, 1000000)
-
         print(f"Using seed: {seed}")
 
         # Debug: Indicate that the image is being generated
@@ -74,9 +77,9 @@ def generate_image(left_hp, right_hp, height, width, num_inference_steps, guidan
         return f"An error occurred: {e}"
 
 # Gradio Interface
-def generate_interface(left_hp, right_hp, height, width, num_inference_steps, guidance_scale, seed, randomize_seed):
+def generate_interface(left_hp, right_hp):
     # Generate the image
-    image = generate_image(left_hp, right_hp, height, width, num_inference_steps, guidance_scale, seed, randomize_seed)
+    image = generate_image(left_hp, right_hp)
 
     if isinstance(image, str):
         return image  # Return error message
@@ -93,22 +96,13 @@ with gr.Blocks() as demo:
     with gr.Row():
         left_hp = gr.Slider(0, 100, value=100, label="Left Castle HP")
         right_hp = gr.Slider(0, 100, value=100, label="Right Castle HP")
-    with gr.Row():
-        height = gr.Number(value=512, label="Height")
-        width = gr.Number(value=1024, label="Width")
-    with gr.Row():
-        num_inference_steps = gr.Slider(10, 100, value=20, label="Inference Steps")
-        guidance_scale = gr.Slider(1.0, 20.0, value=2.0, label="Guidance Scale")
-    with gr.Row():
-        seed = gr.Number(value=random.randint(0, 1000000), label="Seed")
-        randomize_seed = gr.Checkbox(value=True, label="Randomize Seed")
     generate_button = gr.Button("Generate Image")
     output_image = gr.Image(label="Generated Image")
 
     # Link the button to the function
     generate_button.click(
         generate_interface,
-        inputs=[left_hp, right_hp, height, width, num_inference_steps, guidance_scale, seed, randomize_seed],
+        inputs=[left_hp, right_hp],
         outputs=output_image
     )
 
