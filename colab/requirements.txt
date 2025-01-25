@@ -1,4 +1,6 @@
 diffusers 
 transformers 
 torch
+gradio
+
 

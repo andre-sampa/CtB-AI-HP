@@ -34,6 +34,16 @@ def generate_image(left_hp, right_hp):
             height=height,  # Height
             seed=seed  # Random seed
         )
+
+        # Debug: Show selected parameters
+        print(f"Left Castle HP: {left_hp}")
+        print(f"Right Castle HP: {right_hp}")
+        print(f"Height: {height}")
+        print(f"Width: {width}")
+        print(f"Inference Steps: {num_inference_steps}")
+        print(f"Guidance Scale: {guidance_scale}")
+        print(f"Seed: {seed}")
+
         return image
     except Exception as e:
         return f"An error occurred: {e}"
