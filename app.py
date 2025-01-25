@@ -1,12 +1,9 @@
 import random
 from huggingface_hub import InferenceClient
-from PIL import Image
 from datetime import datetime
 import gradio as gr
 from config.config import api_token
 from config.models import models
-from config.prompts import generate_castle_description
-from src.img_gen_logic import generate_image
 from src.gradio_interface import demo
 
 # Initialize the InferenceClient with the default model

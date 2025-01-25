@@ -1,6 +1,6 @@
 import gradio as gr
 from datetime import datetime
-from src.img_gen_logic import generate_image
+from img_gen import generate_image
 
 
 # Gradio Interface
