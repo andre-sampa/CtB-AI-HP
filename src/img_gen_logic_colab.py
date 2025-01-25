@@ -1,3 +1,10 @@
+
+import ipywidgets as widgets
+
+# Create the output widget
+output = widgets.Output()
+
+
 # Function to generate images based on the HP values
 def generate_image(left_hp, right_hp, height, width, num_inference_steps, guidance_scale, seed):
     # Generate the prompt
