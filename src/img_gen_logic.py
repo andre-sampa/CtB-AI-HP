@@ -4,7 +4,6 @@ from huggingface_hub import InferenceClient
 from config.models import models
 from config.config import api_token
 
-
 # Function to generate images based on the HP values
 def generate_image(left_hp, right_hp):
     # Hardcoded parameters
