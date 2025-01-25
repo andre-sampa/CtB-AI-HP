@@ -1,8 +1,11 @@
 # src/img_gen_logic_colab.py
 from huggingface_hub import InferenceClient
-from PIL import Image
 import random
 from datetime import datetime
+from config.config_colab import models, api_token
+
+# Initialize the InferenceClient with the default model
+client = InferenceClient(models[0]["name"], token=api_token)
 
 
 # Function to generate images based on the HP values
