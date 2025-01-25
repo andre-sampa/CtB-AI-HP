@@ -1,6 +1,6 @@
 ---
-title: CtB AI HP Python
-emoji: 💻
+title: CtB AI HP Python 1.0
+emoji: 💻⚔️
 colorFrom: green
 colorTo: indigo
 sdk: gradio
