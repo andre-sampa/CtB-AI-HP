@@ -26,10 +26,9 @@ with gr.Blocks() as demo:
     generate_button = gr.Button("Generate Image")
     output_image = gr.Image(label="Generated Image")
 
-
     # Link the button to the function
     generate_button.click(
         generate_interface,
         inputs=[left_hp, right_hp],
-        outputs=[output_image]
+        outputs=output_image
     )
