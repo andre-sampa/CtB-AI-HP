@@ -4,10 +4,9 @@ from PIL import Image
 import random
 from datetime import datetime
 
-def generate_image(left_hp, right_hp, height, width, num_inference_steps, guidance_scale, seed, models, api_token, randomize_seed_checkbox, seed_input):
-    """
-    Generate an image using the Hugging Face Inference API.
-    """
+
+# Function to generate images based on the HP values
+def generate_image(left_hp, right_hp, height, width, num_inference_steps, guidance_scale, seed):
     # Generate the prompt
     prompt = generate_prompt(left_hp, right_hp)
 
@@ -38,10 +37,8 @@ def generate_image(left_hp, right_hp, height, width, num_inference_steps, guidan
     except Exception as e:
         return f"An error occurred: {e}"
 
-def on_generate_button_clicked(b, output, left_hp_input, right_hp_input, height_input, width_input, num_inference_steps_input, guidance_scale_input, seed_input, randomize_seed_checkbox, models, api_token):
-    """
-    Handle the button click event.
-    """
+# Function to handle button click event
+def on_generate_button_clicked(b):
     with output:
         clear_output(wait=True)  # Clear previous output
         left_hp = left_hp_input.value
@@ -62,7 +59,7 @@ def on_generate_button_clicked(b, output, left_hp_input, right_hp_input, height_
         print(f"Seed: {seed}")
 
         # Generate the image
-        image = generate_image(left_hp, right_hp, height, width, num_inference_steps, guidance_scale, seed, models, api_token, randomize_seed_checkbox, seed_input)
+        image = generate_image(left_hp, right_hp, height, width, num_inference_steps, guidance_scale, seed)
 
         if isinstance(image, str):
             print(image)
@@ -80,3 +77,6 @@ def on_generate_button_clicked(b, output, left_hp_input, right_hp_input, height_
             print(f"Saving image as {output_filename}...")
             image.save(output_filename)
             print(f"Image saved as {output_filename}")
+
+# Attach the button click event handler
+generate_button.on_click(on_generate_button_clicked)
