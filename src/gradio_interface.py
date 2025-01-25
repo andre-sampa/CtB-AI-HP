@@ -23,9 +23,10 @@ with gr.Blocks() as demo:
     with gr.Row():
         left_hp = gr.Slider(0, 100, value=100, label="Left Castle HP")
         right_hp = gr.Slider(0, 100, value=100, label="Right Castle HP")
-    generate_button = gr.Button("Generate Image 22")
-    output_image = gr.Image(label="Generated Image")
-    status_text = gr.Textbox(label="Status", placeholder="Waiting for input...", interactive=False)
+        generate_button = gr.Button("Generate Image 21")
+        output_image = gr.Image(label="Generated Image")
+    with gr.Row():
+        status_text = gr.Textbox(label="Status", placeholder="Waiting for input...", interactive=False)
 
 
     # Link the button to the function
