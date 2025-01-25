@@ -1,5 +1,7 @@
 import gradio as gr
+from datetime import datetime
 from config.prompts import generate_image
+
 
 # Gradio Interface
 def generate_interface(left_hp, right_hp):
