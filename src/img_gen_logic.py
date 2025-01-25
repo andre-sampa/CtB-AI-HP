@@ -43,7 +43,7 @@ def generate_image(left_hp, right_hp):
         print(f"Inference Steps: {num_inference_steps}")
         print(f"Guidance Scale: {guidance_scale}")
         print(f"Seed: {seed}")
-
+        
         return image
     except Exception as e:
         return f"An error occurred: {e}"
