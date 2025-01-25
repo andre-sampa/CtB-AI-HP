@@ -1,3 +1,8 @@
+
+from huggingface_hub import InferenceClient
+from config.config import api_token
+from config.models import models
+
 # Function to generate castle descriptions based on HP
 def generate_castle_description(hp, color):
     if hp == 100:
@@ -21,36 +26,3 @@ def generate_prompt(left_hp, right_hp):
     right_desc = generate_castle_description(right_hp, "red")
     return f"A wide fantasy landscape showing two castles. On the left, a castle with {left_desc}, adorned exclusively with large and prominent blue flags flying proudly. On the right, a castle with {right_desc}, adorned exclusively with large and prominent red flags flying proudly. The scene is highly detailed, with a clear contrast between the two castles. The left castle is visibly more damaged than the right castle, with significantly more red fire, smoke, and destruction. The blue flags on the left castle and the red flags on the right castle are clearly visible and distinct, ensuring no overlap in team colors. The fire is always red, regardless of the castle's team."
 
-# Function to generate images based on the HP values
-def generate_image(left_hp, right_hp):
-    # Hardcoded parameters
-    height = 512  # Fixed height
-    width = 1024  # Fixed width
-    num_inference_steps = 20  # Fixed inference steps
-    guidance_scale = 2.0  # Fixed guidance scale
-    seed = random.randint(0, 1000000)  # Random seed
-
-    # Generate the prompt
-    prompt = generate_prompt(left_hp, right_hp)
-
-    try:
-        print(f"Using seed: {seed}")
-
-        # Debug: Indicate that the image is being generated
-        print("Generating image... Please wait.")
-
-        # Initialize the InferenceClient with the selected model
-        client = InferenceClient(models[0]["name"], token=api_token)
-
-        # Generate the image using the Inference API with parameters
-        image = client.text_to_image(
-            prompt,
-            guidance_scale=guidance_scale,  # Guidance scale
-            num_inference_steps=num_inference_steps,  # Number of inference steps
-            width=width,  # Width
-            height=height,  # Height
-            seed=seed  # Random seed
-        )
-        return image
-    except Exception as e:
-        return f"An error occurred: {e}"
