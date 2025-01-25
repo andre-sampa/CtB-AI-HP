@@ -23,7 +23,7 @@ with gr.Blocks() as demo:
     with gr.Row():
         left_hp = gr.Slider(0, 100, value=100, label="Left Castle HP")
         right_hp = gr.Slider(0, 100, value=100, label="Right Castle HP")
-        generate_button = gr.Button("Generate Image 22")
+    generate_button = gr.Button("Generate Image")
     output_image = gr.Image(label="Generated Image")
     status_text = gr.Textbox(label="Status", placeholder="Waiting for input...", interactive=False)
 
