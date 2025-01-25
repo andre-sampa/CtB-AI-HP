@@ -1,9 +1,9 @@
-
+# src/img_gen_logic_colab.py
 import ipywidgets as widgets
+from IPython.display import display, clear_output
 
 # Create the output widget
 output = widgets.Output()
-
 
 # Function to generate images based on the HP values
 def generate_image(left_hp, right_hp, height, width, num_inference_steps, guidance_scale, seed):
