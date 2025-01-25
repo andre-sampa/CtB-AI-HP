@@ -24,7 +24,7 @@ with gr.Blocks() as demo:
         left_hp = gr.Slider(0, 100, value=100, label="Left Castle HP")
         right_hp = gr.Slider(0, 100, value=100, label="Right Castle HP")
     generate_button = gr.Button("Generate Image")
-    output_image = gr.Image(label="Generated Image", height=400)
+    output_image = gr.Image(label="Generated Image", height=450)
 
 
     # Link the button to the function
