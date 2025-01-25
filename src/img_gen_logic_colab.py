@@ -1,12 +1,13 @@
 # src/img_gen_logic_colab.py
-import ipywidgets as widgets
-from IPython.display import display, clear_output
+from huggingface_hub import InferenceClient
+from PIL import Image
+import random
+from datetime import datetime
 
-# Create the output widget
-output = widgets.Output()
-
-# Function to generate images based on the HP values
-def generate_image(left_hp, right_hp, height, width, num_inference_steps, guidance_scale, seed):
+def generate_image(left_hp, right_hp, height, width, num_inference_steps, guidance_scale, seed, models, api_token, randomize_seed_checkbox, seed_input):
+    """
+    Generate an image using the Hugging Face Inference API.
+    """
     # Generate the prompt
     prompt = generate_prompt(left_hp, right_hp)
 
@@ -37,8 +38,10 @@ def generate_image(left_hp, right_hp, height, width, num_inference_steps, guidan
     except Exception as e:
         return f"An error occurred: {e}"
 
-# Function to handle button click event
-def on_generate_button_clicked(b):
+def on_generate_button_clicked(b, output, left_hp_input, right_hp_input, height_input, width_input, num_inference_steps_input, guidance_scale_input, seed_input, randomize_seed_checkbox, models, api_token):
+    """
+    Handle the button click event.
+    """
     with output:
         clear_output(wait=True)  # Clear previous output
         left_hp = left_hp_input.value
@@ -59,7 +62,7 @@ def on_generate_button_clicked(b):
         print(f"Seed: {seed}")
 
         # Generate the image
-        image = generate_image(left_hp, right_hp, height, width, num_inference_steps, guidance_scale, seed)
+        image = generate_image(left_hp, right_hp, height, width, num_inference_steps, guidance_scale, seed, models, api_token, randomize_seed_checkbox, seed_input)
 
         if isinstance(image, str):
             print(image)
