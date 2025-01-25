@@ -4,7 +4,9 @@ import ipywidgets as widgets
 from datetime import datetime
 from config.config_colab import models, api_token
 from huggingface_hub import InferenceClient
-from colab import output 
+
+# Output area to display the image
+output = widgets.Output()
 
 # Function to generate castle descriptions based on HP
 def generate_castle_description(hp, color):
