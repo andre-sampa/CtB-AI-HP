@@ -19,7 +19,7 @@ def generate_interface(left_hp, right_hp):
 
 # Gradio UI Components
 with gr.Blocks() as demo:
-    gr.Markdown("# Castle Image Generator 222")
+    gr.Markdown("# CtB - Castle Image Generator")
     with gr.Row():
         left_hp = gr.Slider(0, 100, value=100, label="Left Castle HP")
         right_hp = gr.Slider(0, 100, value=100, label="Right Castle HP")
