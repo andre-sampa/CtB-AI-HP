@@ -23,12 +23,6 @@ def generate_image(left_hp, right_hp):
         print("Generating image... Please wait.")
 
         # Initialize the InferenceClient with the selected model
-            # Debugging: Check if the Hugging Face token is available
-        if not api_token:
-             print("ERROR2: Hugging Face token (HF_CTB_TOKEN) is missing. Please set it as an environment variable or in Colab secrets.")
-        else:
-             print("Hugging Face token loaded successfully.")
-
         client = InferenceClient(models[0]["name"], token=api_token)
 
         # Generate the image using the Inference API with parameters
