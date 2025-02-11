@@ -1,5 +1,5 @@
 ---
-title: CtB AI HP Python 1.0
+title: CtB-AI-castles-hp
 emoji: 🏰
 colorFrom: green
 colorTo: indigo
